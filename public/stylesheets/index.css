@@ -1,0 +1,18 @@
+body {
+	background:url('../images/bg.png') repeat-x;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+nav ul {
+	list-style:none;
+	position:absolute;
+}
+nav ul li{
+	float:left;
+	margin-right:30px;
+	border:3px solid lightblue;
+	border-radius:30%;
+}
+nav ul li img{
+	width:142px;
+	height:142px;
+}

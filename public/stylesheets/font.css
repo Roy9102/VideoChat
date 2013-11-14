@@ -1,0 +1,37 @@
+@font-face{
+	font-family:'Cherry';
+	src: url('../fonts/Cherry Carton.ttf');
+}
+@font-face{
+	font-family:'mengnaqiao';
+	src: url('../fonts/MYoungHKS-Xbold.otf');
+}
+@font-face{
+	font-family:'mengnaqiaohei';
+	src: url('../fonts/mengnaqiaohei.ttf');
+}
+@font-face{
+	font-family:'panda';
+	src: url('../fonts/panda.ttf');
+}
+@font-face{
+	font-family:'Sail';
+	src: url('../fonts/Sail-Regular.otf');
+}
+
+@font-face{
+	font-family:'huakangshaoer';
+	src: url('../fonts/huakangshaoer.ttf');
+}
+@font-face{
+	font-family:'huakanghaibao';
+	src: url('../fonts/huakanghaibao.ttf');
+}
+@font-face{
+	font-family:'shaonv';
+	src: url('../fonts/shaonv.ttf');
+}
+@font-face{
+	font-family:'maria';
+	src: url('../fonts/maria.ttf');
+}

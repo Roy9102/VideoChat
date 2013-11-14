@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title><%= title%></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
+    <link rel="stylesheet" type="text/css" href=""  />
+	<script type="text/javascript" src="/javascripts/jquery.js" ></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js" ></script>
+	<script type="text/javascript" src="/javascripts/login.js" ></script>
+  </head>
+  <body>
+	<section class="container">
+		<div class="form-container">
+			<div class="logo">
+				<img src="/images/fish-to-fish.png "   />
+				<h2>登录iChat</h2>
+			</div>
+			<form method="post" class="form-horizontal">
+				<div class="group">
+					<label for="userId">账号</label>
+					<input type="text" name="userId" id="userId"/>
+				</div>
+				<div class="group">
+					<label for="password">密码</label>
+					<input type="password" name="password" id="password"  />
+				</div>
+				<div class="action-group">
+					<button type="submit" class="btn disable" id="login"></button>
+				</div>
+				<div class="group">
+					<%if(error){%>
+						<span class="alert-error autoFade"><%=error%></span>
+					<%}%>
+					<input type="checkbox" name="savePwd" id="savePwd"  />
+					<label for="savePwd">记住密码</label>
+				</div>
+			</form>
+		</div>
+	</section>
+	<footer>
+		<a href="http://www.dgut.edu.cn"><img src="/images/dgut_logo.png" /></a>
+	</footer>
+  </body>
+</html>

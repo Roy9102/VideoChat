@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+	<link rel='stylesheet' href='/stylesheets/font.css' />
+    <link rel='stylesheet' href='/stylesheets/chat.css' />
+	<script type="text/javascript" src="/socket.io/socket.io.js" ></script>
+	<script type="text/javascript" src="/javascripts/jquery.js"></script>
+	<script type="text/javascript" src="/javascripts/WebRTC.js"></script>
+	<script>
+		$(function(){
+			var chat = new WebRTC();
+			chat.connection.emit('on-line',{userId:'<%=user.userId%>', username:'<%=user.username%>', mood:'<%=user.mood%>', logo:'<%=user.userFace%>'});
+			chat.getLocalMedia({video:true,audio:true});
+		});
+
+	</script>
+	<script type="text/javascript" src="/javascripts/chat.js"></script>
+  </head>
+  <body>
+	<video id="local" >Your browser can't support the Video TAG</video>
+	<video id="remote" >Your browser can't support the Video TAG</video>
+	<aside id="panel">
+		<div id="panel_top">
+			<div id="user_face">
+				<img src="<%=user.userFace%>" userId = "<%=user.userId%>" />
+				<h3><%=user.username%></h3>
+			</div>
+			<button id="dropDown"><img src="/images/menu.png" /></button>
+			<div id="dropMenu">
+				<ul>
+					<li><a href="/logout">注销</a></li>
+					<li><a href="/logout">添加好友</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="searchBar">
+			<span id="searchIcon"></span>
+			<input type="search" id="search" />
+			<span id="clearIcon"></span>
+		</div>
+		<div id="friend-list">
+			<ul id="friendUl">
+			</ul>
+		</div>
+	</aside>
+	<section id="chat_window">
+		<div id="chat_top">
+			<h2></h2>
+			<span id="close"><img src="/images/clear.png"  /></span>
+		</div>
+		<div id="chat_content">
+		</div>
+		<div id= "chat_controls">
+			<div id = "left_controls">
+				<ul>
+					<li>
+						<img src = "/images/smile.png" />
+					</li>
+					<li>
+						<img src = "/images/printScreen.png" />
+					</li>
+					<li>
+						<img src = "/images/transfer.png" />
+					</li>
+				</ul>
+			</div>
+			<div id="input_area">
+				<input type="text" id="message" name="message" />
+			</div>
+			<div id="send">
+				<div>
+					<button id="send" >发送</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+  </body>
+ </html>

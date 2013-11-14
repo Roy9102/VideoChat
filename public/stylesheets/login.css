@@ -1,0 +1,154 @@
+/*login.css*/
+body{
+	width:100%;
+	height:100%;
+	background:url('../images/bg.png') repeat-x;
+}
+*{
+	margin:0;
+	padding:0;
+}
+.container{
+	width:100%;
+	height:100%;
+	background:url('../images/bg.png') repeat-x;
+}
+.form-container{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-174px;
+	margin-top:-170px;
+	height:340px;
+	width:350px;
+	background-color:rgba(255,255,255,0.8);
+	border:1px solid white;
+	border-radius:50px;
+	box-shadow:1px 1px 30px rgba(0,102,102,0.8);
+}
+
+.form-container .logo,.form-container .group{
+	width:350px;
+	margin:0 auto;
+	text-align:center;
+} 
+
+.form-container .logo img{
+	position:relative;
+	top:26px;
+}
+
+.form-container .logo h2{
+	color:gray;
+	font-size:2.5em;
+	font-weight:blod;
+	font-family:"Helvetica Neue",sans-serif,"Microsoft Yahei","SimHei";
+	position:relative;
+	top:28px;
+}
+
+
+.form-horizontal{
+	position:relative;
+	top:46px;
+	height:100px;
+	width:350px;
+	
+}
+
+.form-horizontal label{
+	position:absolute;
+	height:50px;
+	left:30px;
+	padding-top:10px;
+	color:rgb(200, 200, 200);
+	font-weight:bold;
+	font-size:1.2em;
+	font-family:"Helvetica Neue",sans-serif,"Microsoft Yahei","SimHei";
+}
+
+.form-horizontal input{
+	border:none;
+	outline:none;
+	background:none;
+	font-size:20px;
+	border-bottom:1px rgb(200, 200, 200) solid;
+	width:300px;
+	height:40px;
+	color:rgb(100,100,100);
+	padding-left:8px;
+}
+
+.alert-error{
+	text-align:center;
+	background:#FF99CC;
+	position:absolute;
+	color:white;
+	left:80px;
+	top:86px;
+	width:50%;
+	height:30px;
+	line-height:30px;
+	border-radius:30px;
+	z-index:1;
+	box-shadow:0 1px 30px #FF99DD;
+}
+
+
+
+.form-horizontal input#savePwd{
+	border:none;
+	outline:none;
+	border-bottom:1px rgb(206, 214, 218) solid;
+	width:auto;
+	height:40px;
+	position:relative;
+	left:-10px;
+	top:34px;
+	cursor:pointer;
+}
+
+
+.form-horizontal label[for=savePwd]{
+	position:relative;
+	left:-10px;
+	top:20px;
+	cursor:pointer;
+}
+
+
+.action-group{
+	position:absolute;
+	left:300px;
+	top:52px;
+	width:26px;
+	height:26px;
+}
+
+.action-group #login{
+	border:none;
+	outline:none;
+}
+
+.action-group .btn{
+	width:26px;
+	height:26px;
+	position:absolute;
+	cursor:pointer;
+	box-shadow:0px 0px 10px rgba(240,240,240,0.7);
+}
+
+.action-group .disable{
+	background: url('../images/login_btn.png');
+}
+
+.action-group .able{
+	background: url('../images/btn_able.png');
+}
+
+footer{
+	position:absolute;
+	bottom:4px;
+	left:4px;
+}
+
