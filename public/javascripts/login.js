@@ -1,5 +1,9 @@
 //login.js
 $(function(){
+	if($('input#userId').val() && $('input#password').val()){
+		$('input:text,input:password').prev('label').hide();
+		$('.btn').removeClass('disable').addClass('able');
+	}
 	if(window.localStorage && localStorage.length){
 		var keyword = localStorage.key(0);
 		var user = JSON.parse(localStorage.getItem(keyword));
@@ -25,7 +29,7 @@ $(function(){
 	
 	$('.autoFade').fadeToggle(3000);		
 	$('#login').click(function(){
-		/* if($('#savePwd').is(':checked')){
+		 if($('#savePwd').is(':checked')){
 			if(window.localStorage){
 				var user ={
 					userId :$('input#userId').val(),
@@ -33,6 +37,6 @@ $(function(){
 				}
 				localStorage.setItem($('input#userId').val(),JSON.stringify(user));
 			}
-		}; */
+		}; 
 	});
 });

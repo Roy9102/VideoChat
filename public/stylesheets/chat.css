@@ -16,6 +16,7 @@ body{
 	background:url('../images/bg.png') repeat-x;
 	font-family:'huakanghaibao';
 	font-size:16px;
+	overflow:hidden;
 }
 aside#panel{
 	position:absolute;
@@ -33,6 +34,7 @@ div#panel_top{
 	background:linear-gradient(#1075CC,#0B518C);
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+		cursor:move;
 }
 
 div#user_face{
@@ -195,23 +197,35 @@ ul#friendUl li p{
 	top:54px;
 	overflow:hidden;
 }
+section#window{
+	
+	display:none;
+}
 
 section#chat_window{
-	display:none;
 	position:absolute;
 	width:680px;
 	height:600px;
-	left:500px;
-	top:100px;
+	left:50%;
+	top:50%;
+	margin-left:-340px;
+	margin-top:-300px;
 	z-index:100;
+	-webkit-transition: 2s ease-in-out;
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+	-moz-transition: 2s ease-in-out; 
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
 }
 section#chat_window div#chat_top{
 	width:100%;
 	height:8%;
 	position:relative;
 	background:linear-gradient(#1075CC,#0B518C);
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
+	border-top-left-radius:30px;
+	border-top-right-radius:30px;
+
 }
 
 section#chat_window div#chat_top h2{
@@ -230,14 +244,24 @@ section#chat_window div#chat_content{
 	width:100%;
 	height:82%;
 	background:linear-gradient(#FFFFFF,#EEEEEE);
+	padding:10px 0 0 0px;
+	overflow-y:scroll;
+	overflow-x:auto;
+}
+#chat_content div{
+	padding:8px 0 0 20px;
+	word-wrap : break-word;
+}
+#chat_content div p{
+	margin:4px 0 0 6px; 
 }
 section#chat_window div#chat_controls{
 	position:relative;
 	width:100%;
 	height:10%;
 	background:linear-gradient(#1075CC,#0B518C);
-	border-bottom-left-radius:10px;
-	border-bottom-right-radius:10px;
+	border-bottom-left-radius:30px;
+	border-bottom-right-radius:30px;
 }
 
 div#chat_controls div#left_controls{
@@ -270,13 +294,52 @@ div#input_area input#message{
 	border-color:#bbb #ddd #ddd #bbb;
 }
 
-div#send{
+div#send_div{
 	position:absolute;
 	left:82%;
 	top:50%;
 	margin-top:-20px;
 }
-div#send button{
+
+div#send_div div.tips{
+	display:none;
+	width:120px;
+	height:30px;
+	background:linear-gradient(rgba(150,150,150,0.9), rgba(150,150,150,0.9));
+	position:absolute;
+	border-radius:10px;
+	color:#1075CC;
+	left:400px;
+	top:-40px;
+	opacity:0.8;
+	box-shadow:1px 1px 2px rgba(0,0,0,0.7);
+	-webkit-transition:0.8s ease-in;
+	-moz-transition:0.8s ease-in;
+	transition:0.8s ease-in;
+}
+
+div#send_div div.tips:before{
+	content:"";
+	position:absolute;
+	left:40%;
+	top:40%;
+	width:24px;
+	height:24px;
+	background:linear-gradient(rgba(150,150,150,0.71), rgba(150,150,150,0.71));
+	-webkit-transform-origin:center;
+	-webkit-transform:rotate(-45deg);
+	-moz-transform-origin:center;
+	-moz-transform:rotate(-45deg);
+	transform-origin:center;
+	transform:rotate(-45deg);
+	z-index:-100;
+}
+div#send_div div.tips p{
+	line-height:30px;
+	text-align:center;
+}
+
+div#send_div button{
 	border:none;
 	outline:none;
 	width:100px;
@@ -289,7 +352,87 @@ div#send button{
 	color:#fff;
 }
 
-div#send button:active{
+div#send_div button:active{
 	box-shadow:0 0 10px rgba(65,62,99,0.98);
+}
+
+
+div#videoCall{
+	position:absolute;
+	border-radius:30px;
+	background:rgba(255,255,255,0.3);
+	box-shadow:1px 1px 30px rgba(255,255,255,0.6),inset 2px 2px 10px rgba(255,255,255,0.6);
+	width:680px;
+	height:600px;
+	left:50%;
+	top:50%;
+	margin-left:-340px;
+	margin-top:-300px;
+	 -webkit-transition: 2s ease-in-out;
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: rotateY(-180deg);
+	-moz-transition: 2s ease-in-out; 
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	
+}
+div#videoCall #local{
+	width:30%;
+	height:21.25%;
+	position:absolute;
+	left:65%;
+	top:69%;
+	z-index:100;
+	opacity:0.9;
+	border-radius:10px;
+}
+
+div#videoCall #remote{
+	width:90%;
+	height:80%;
+	position:absolute;
+	left:5%;
+	top:10%;
+}
+
+aside#msg_hint{
+	display:none;
+	position:absolute;
+	width:280px;
+	min-height:50px;
+	background:linear-gradient(rgba(220,220,212,0.8),rgba(180,180,175,0.8));
+	box-shadow:1px 0 30px rgba(140,140,135,0.8);
+	right:-250px;
+	top:80%;
+	border-radius:10px;
+	-webkit-transition:0.5s linear;
+	-moz-transition:0.5s linear;
+	transition:0.5s linear;
+}
+
+aside#msg_hint ul#hint_list{
+	margin:10px 0 10px 6px;
+	
+}
+#hint_list li {
+	position:relative;
+	height:24px;
+	width:100%;
+}
+
+#hint_list li span.pop{
+	background:#FF99CC;
+	width:20px;
+	height:20px;
+	font-size:0.8em;
+	position:absolute;
+	margin-left:-36px;
+	border-radius:100%;
+	right:20px;
+	color:white;
+	line-height:20px;
+	text-align:center;
+	
 }
 

@@ -4,22 +4,9 @@
     <title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/font.css' />
     <link rel='stylesheet' href='/stylesheets/chat.css' />
-	<script type="text/javascript" src="/socket.io/socket.io.js" ></script>
-	<script type="text/javascript" src="/javascripts/jquery.js"></script>
-	<script type="text/javascript" src="/javascripts/WebRTC.js"></script>
-	<script>
-		$(function(){
-			var chat = new WebRTC();
-			chat.connection.emit('on-line',{userId:'<%=user.userId%>', username:'<%=user.username%>', mood:'<%=user.mood%>', logo:'<%=user.userFace%>'});
-			chat.getLocalMedia({video:true,audio:true});
-		});
-
-	</script>
-	<script type="text/javascript" src="/javascripts/chat.js"></script>
+	
   </head>
   <body>
-	<video id="local" >Your browser can't support the Video TAG</video>
-	<video id="remote" >Your browser can't support the Video TAG</video>
 	<aside id="panel">
 		<div id="panel_top">
 			<div id="user_face">
@@ -44,37 +31,54 @@
 			</ul>
 		</div>
 	</aside>
-	<section id="chat_window">
-		<div id="chat_top">
-			<h2></h2>
-			<span id="close"><img src="/images/clear.png"  /></span>
+	<section id="window">
+		<div id="videoCall">
+			<video id="local" >Your browser can't support the Video TAG</video>
+			<video id="remote"  >Your browser can't support the Video TAG</video>
 		</div>
-		<div id="chat_content">
-		</div>
-		<div id= "chat_controls">
-			<div id = "left_controls">
-				<ul>
-					<li>
-						<img src = "/images/smile.png" />
-					</li>
-					<li>
-						<img src = "/images/printScreen.png" />
-					</li>
-					<li>
-						<img src = "/images/transfer.png" />
-					</li>
-				</ul>
+		<section id="chat_window">
+			<div id="chat_top">
+				<h2></h2>
+				<span id="close"><img src="/images/clear.png"  /></span>
 			</div>
-			<div id="input_area">
-				<input type="text" id="message" name="message" />
+			<div id="chat_content">
 			</div>
-			<div id="send">
-				<div>
-					<button id="send" >发送</button>
+			<div id= "chat_controls">
+				<div id = "left_controls">
+					<ul>
+						<li>
+							<img src = "/images/smile.png" />
+						</li>
+						<li>
+							<img src = "/images/printScreen.png" />
+						</li>
+						<li>
+							<img src = "/images/transfer.png" />
+						</li>
+					</ul>
+				</div>
+				<div id="input_area">
+					<input type="text" id="message" name="message" />
+				</div>
+				<div id="send_div">
+					<div class="tips autoFade">
+						<p>不能发送空信息</p>
+					</div>
+					<div>
+						<button id="send" >发送</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	
+		</section>
+	</section>	
+	<aside id="msg_hint">
+		<ul id="hint_list">
+		</ul>
+	</aside>
+	<script type="text/javascript" src="/socket.io/socket.io.js" ></script>
+	<script type="text/javascript" src="/javascripts/jquery.js"></script>
+	<script type="text/javascript" src="/javascripts/WebRTC.js"></script>
+	<script type="text/javascript" src="/javascripts/chat.js"></script>
   </body>
+  
  </html>

@@ -7,6 +7,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 var User = require('../Modules/User');
 var FriendList = require('../Modules/FriendList');
+var users = {};
  
  
 module.exports = function(app,io){
@@ -39,6 +40,7 @@ module.exports = function(app,io){
 	app.get('/logout',function(req,res){
 		if(req.session.user){
 			req.session.user=null;
+			delete users;
 			return res.redirect('/login');
 		}else{
 			return res.redirect('/login');
@@ -50,26 +52,56 @@ module.exports = function(app,io){
 	});	
 	app.get('/chat',checkLogin);
 	app.get('/chat',function(req, res){
-		res.render('chat',{title:'Chat',user: req.session.user,error:req.flash('error').toString(),success:req.flash('success').toString()});
-		var client = [];
-		var users = [];
 		io.of('/chat').on('connection',function(socket){
 			socket.on('on-line',function(client){
-				FriendList.findOne({hostId:client.userId},function(err,doc){
-					var friends;
-					if(doc === null){
-						console.log(err);
-						friends = [];
-					}else{
-						friends= doc.list;
-					}
-					socket.emit('refreshList',friends);
-				});
+				var clienter = JSON.parse(client);
+				if(!users[clienter.userId]){
+					console.log(clienter.userId+'上线了~~');
+					users[clienter.userId] = {socket:socket};
+					FriendList.findOne({hostId:clienter.userId},function(err,doc){
+						var friends;
+						if(doc === null){
+							console.log(err);
+							friends = [];
+						}else{
+							friends= doc.list;
+						}
+						users[clienter.userId].socket.emit('refreshList',friends);
+					});
+				}
 			});
-			socket.on('invite',function(data){
-				console.log(data);
+			
+			socket.on('invite',function(invitation){
+				var ivt = JSON.parse(invitation);
+				users[ivt.inviteeId].socket.emit('invite', invitation);
+			});
+			
+			socket.on('reject',function(message){
+				var msg = JSON.parse(message);
+				users[msg.id].socket.emit('reject', message);
+			});
+			socket.on('message',function(msg){
+				var message = JSON.parse(msg);
+				users[message.destination].socket.emit('message',msg);
+			});
+			socket.on('text',function(text){
+				var txt = JSON.parse(text);
+				users[txt.destination].socket.emit('text',text);
+			});
+			socket.on('disconnect',function(){
+				var socketUser;
+				for(var i in users){
+					if(users[i]===socket){
+						socketUser = i;
+						break;
+					}
+				}
+				console.log(socketUser+'下线了~');
+				delete users[socketUser];
+				socket.broadcast.emit('off-line',socketUser);
 			});
 		});
+		res.render('chat',{title:'Chat',user: req.session.user,error:req.flash('error').toString(),success:req.flash('success').toString()});
 	});
 	
 	function checkLogin(req, res, next){ 
